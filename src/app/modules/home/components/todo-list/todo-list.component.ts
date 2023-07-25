@@ -7,10 +7,10 @@ import { Task } from '../../model/task';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements DoCheck {
-  public taskList: Array<Task> = JSON.parse(sessionStorage.getItem("item") || '[]');
+  public taskList: Array<Task> = JSON.parse(localStorage.getItem("item") || '[]');
 
   ngDoCheck(): void {
-    this.setSessionStorage();
+    this.setLocalStorage();
   }
 
   public deleteTask(index: number): void {
@@ -39,12 +39,12 @@ export class TodoListComponent implements DoCheck {
     this.deleteTask(index);
   }
 
-  private setSessionStorage(): void {
+  private setLocalStorage(): void {
     if (!this.taskList) {
       return;
     }
 
     this.taskList.sort((first, last) => Number(first.checked) - Number(last.checked));
-    sessionStorage.setItem("taskList", JSON.stringify(this.taskList));
+    localStorage.setItem("taskList", JSON.stringify(this.taskList));
   }
 }
