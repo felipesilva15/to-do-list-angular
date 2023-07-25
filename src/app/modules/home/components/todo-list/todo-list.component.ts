@@ -7,7 +7,7 @@ import { Task } from '../../model/task';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements DoCheck {
-  public taskList: Array<Task> = JSON.parse(localStorage.getItem("item") || '[]');
+  public taskList: Array<Task> = JSON.parse(localStorage.getItem("taskList") || '[]');
 
   ngDoCheck(): void {
     this.setLocalStorage();
